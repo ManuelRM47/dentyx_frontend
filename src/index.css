@@ -1,3 +1,6 @@
+
+/*General css*/
+
 * {
   margin: 0;
   padding: 0;
@@ -11,15 +14,56 @@ body {
   background-color: #FAFAFA;
 }
 
+/* review css*/
 h4 h5 {
   width: 100%;
 }
 
-.rating {
+.rating-d {
   width: 25%;
   float: left;
 }
 
+.rating-m {
+  width: 100%;
+}
+
+.separador{
+  padding-bottom: 5px;
+}
+
+.rating-v {
+  display: table;
+  margin: auto;
+}
+
 .text-field {
   width: 100%;
+}
+
+.titulo{
+  color: #8889E5;
+}
+
+.titulo2{
+  color: #0C0C34;
+}
+
+.titulo3{
+  color: #6934FF;
+}
+
+.subtitle{
+  color: #7A7A7A;
+}
+
+.container {
+  border-style: solid;
+  border-radius: 30px;
+  border-width: 2px;
+  border-color: #8889E5;
+}
+
+.boton{
+  margin: auto;
 }
