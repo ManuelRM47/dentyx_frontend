@@ -6,38 +6,65 @@ import { Rating, Typography } from '@mui/material';
 import { TextField } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Button } from '@mui/material';
-import ReviewDataService from '../services/review';
+import ReviewDataService from '../services/review.js';
 
 export default function ReviewPost(props) {
-
-    let newReview = {
-        username: "Manuel Alejandro",
-        location: {
-            city: "Mexicali",
-            state: "Baja California",
-            country: "Mexico"
-        },
-        review_values: {
-            quality: 1,
-            communication: 1,
-            price: 1,
-            value: 1,
-            satisfaction: 1,
-            service: 1,
-            cleanliness: 1,
-            comfort: 1,
-            location: 1
-        },
+    let review_data = {
+        quality: 1,
+        communication: 1,
+        price: 1,
+        value: 1,
+        satisfaction: 1,
+        service: 1,
+        cleanliness: 1,
+        comfort: 1,
+        location: 1,
         review_comment: "Escriba aqui su comentario",
         review_recommendation: "Escriba aqui su recomendacion"
-    };
+    }
+
     const isMobile = useMediaQuery('(max-width: 600px)');
     const date = new Date();
-    const [review, setReview] = React.useState(newReview);
+    const [review, setReview] = React.useState(review_data);
     const [submitted, setSubmitted] = React.useState(false);
 
     //console.log(isMobile);
     
+    //endpoint post method
+    const saveReview = () => {
+        let data = {
+            username: "Oscar Rosete",
+            location: {
+                city: "Mexicali",
+                state: "Baja California",
+                country: "Mexico"
+            },
+            review_values: {
+                quality: parseInt(review.quality),
+                communication: parseInt(review.communication),
+                price: parseInt(review.price),
+                value: parseInt(review.value),
+                satisfaction: parseInt(review.satisfaction),
+                service: parseInt(review.service),
+                cleanliness: parseInt(review.cleanliness),
+                comfort: parseInt(review.comfort),
+                location: parseInt(review.location)
+            },
+            review_comment: review.review_comment,
+            review_recommendation: review.review_recommendation
+        };
+
+        ReviewDataService.createReview(data)
+            .then(response => {
+                setSubmitted(true);
+                console.log(response.data);
+                console.log(data);
+            })
+            .catch(e => {
+                console.log(e);
+            })
+    }
+
     //event handlers
     const handleChange = (event) => {
         console.log(event.target.name)
@@ -81,23 +108,23 @@ export default function ReviewPost(props) {
         <Grid item xs={12} paddingBottom={3}>
             <Box paddingLeft={3} xs={12}>
                 <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Calidad</Typography>
-                <Rating min={1} value={review.review_values.quality} precision={0.5} className={`${isMobile ? "rating-m":"rating-d"}`} name="review_values.quality" onChange={handleChange}></Rating>
+                <Rating min={1} value={parseInt(review.quality)} className={`${isMobile ? "rating-m":"rating-d"}`} name="quality" onChange={handleChange}></Rating>
                 <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Servicio</Typography>
-                <Rating min={1} value={review.review_values.service} precision={0.5} className={`${isMobile ? "rating-m":"rating-d"}`} name="review_values.service" onChange={handleChange}></Rating>
+                <Rating min={1} value={parseInt(review.service)} className={`${isMobile ? "rating-m":"rating-d"}`} name="service" onChange={handleChange}></Rating>
                 <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Comunicacion</Typography>
-                <Rating min={1} value={review.review_values.communication} precision={0.5} className={`${isMobile ? "rating-m":"rating-d"}`} name="review_values.communication" onChange={handleChange}></Rating>
+                <Rating min={1} value={parseInt(review.communication)} className={`${isMobile ? "rating-m":"rating-d"}`} name="communication" onChange={handleChange}></Rating>
                 <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Limpieza</Typography>
-                <Rating min={1} value={review.review_values.cleanliness} precision={0.5} className={`${isMobile ? "rating-m":"rating-d"}`} name="review_values.cleanliness" onChange={handleChange}></Rating>
+                <Rating min={1} value={parseInt(review.cleanliness)} className={`${isMobile ? "rating-m":"rating-d"}`} name="cleanliness" onChange={handleChange}></Rating>
                 <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Precio</Typography>
-                <Rating min={1} value={review.review_values.price} precision={0.5} className={`${isMobile ? "rating-m":"rating-d"}`} name="review_values.price" onChange={handleChange}></Rating>
+                <Rating min={1} value={parseInt(review.price)} className={`${isMobile ? "rating-m":"rating-d"}`} name="price" onChange={handleChange}></Rating>
                 <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Confort</Typography>
-                <Rating min={1} value={review.review_values.comfort} precision={0.5} className={`${isMobile ? "rating-m":"rating-d"}`} name="review_values.comfort" onChange={handleChange}></Rating>
+                <Rating min={1} value={parseInt(review.comfort)} className={`${isMobile ? "rating-m":"rating-d"}`} name="comfort" onChange={handleChange}></Rating>
                 <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Valor</Typography>
-                <Rating min={1} value={review.review_values.value} precision={0.5} className={`${isMobile ? "rating-m":"rating-d"}`} name="review_values.value" onChange={handleChange}></Rating>
+                <Rating min={1} value={parseInt(review.value)} className={`${isMobile ? "rating-m":"rating-d"}`} name="value" onChange={handleChange}></Rating>
                 <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Ubicacion</Typography>
-                <Rating min={1} value={review.review_values.location} precision={0.5} className={`${isMobile ? "rating-m":"rating-d"}`} name="review_values.location" onChange={handleChange}></Rating>
+                <Rating min={1} value={parseInt(review.location)} className={`${isMobile ? "rating-m":"rating-d"}`} name="location" onChange={handleChange}></Rating>
                 <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Satisfaccion</Typography>
-                <Rating min={1} value={review.review_values.satisfaction} precision={0.5} className={`${isMobile ? "rating-m":""}`} name="review_values.satisfaction" onChange={handleChange}></Rating>
+                <Rating min={1} value={parseInt(review.satisfaction)} className={`${isMobile ? "rating-m":""}`} name="satisfaction" onChange={handleChange}></Rating>
             </Box>
             <Paper variant='outlined'/> 
         </Grid>
@@ -129,6 +156,7 @@ export default function ReviewPost(props) {
         </Grid>
         <Grid item xs={12} paddingBottom={1}>
             <Button
+            onClick={saveReview}
             variant='contained' 
             className='boton'
             style={isMobile ? 

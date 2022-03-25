@@ -6,3 +6,5 @@ class ReviewDataService {
     }
     
 }
+
+export default new ReviewDataService();
