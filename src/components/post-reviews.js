@@ -6,6 +6,7 @@ import { Rating, Typography } from '@mui/material';
 import { TextField } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Button } from '@mui/material';
+import { StyledEngineProvider } from '@mui/material/styles';
 import ReviewDataService from '../services/review.js';
 
 export default function ReviewPost(props) {
@@ -19,6 +20,7 @@ export default function ReviewPost(props) {
         cleanliness: 1,
         comfort: 1,
         location: 1,
+        username: 'Escriba aqui su nombre',
         review_comment: "Escriba aqui su comentario",
         review_recommendation: "Escriba aqui su recomendacion"
     }
@@ -33,7 +35,7 @@ export default function ReviewPost(props) {
     //endpoint post method
     const saveReview = () => {
         let data = {
-            username: "Oscar Rosete",
+            username: review.username,
             location: {
                 city: "Mexicali",
                 state: "Baja California",
@@ -67,8 +69,6 @@ export default function ReviewPost(props) {
 
     //event handlers
     const handleChange = (event) => {
-        console.log(event.target.name)
-        console.log(event.target.value)
         const value = event.target.value;
         setReview({
             ...review,
@@ -82,8 +82,7 @@ export default function ReviewPost(props) {
     {//* titulo, ubicacion y fecha
     }
     <Grid item xs={12} paddingTop={2}>
-        <Typography variant='h4' component='h4' align={isMobile ? 'center':'left'} className='titulo' paddingBottom={3}>Publicar Reseña</Typography>
-        <Typography variant='h5' component='h5' align={isMobile ? 'center':'left'} className='titulo2'>Oscar Rosete</Typography>
+        <Typography variant='h4' component='h4' align={isMobile ? 'center':'left'} className='titulo' paddingBottom={1}>Publicar Reseña</Typography>
     </Grid>
     
     <Grid item xs={12} md={6}>
@@ -106,27 +105,42 @@ export default function ReviewPost(props) {
         {//* ratings
         }
         <Grid item xs={12} paddingBottom={3}>
-            <Box paddingLeft={3} xs={12}>
-                <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Calidad</Typography>
-                <Rating min={1} value={parseInt(review.quality)} className={`${isMobile ? "rating-m":"rating-d"}`} name="quality" onChange={handleChange}></Rating>
-                <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Servicio</Typography>
-                <Rating min={1} value={parseInt(review.service)} className={`${isMobile ? "rating-m":"rating-d"}`} name="service" onChange={handleChange}></Rating>
-                <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Comunicacion</Typography>
-                <Rating min={1} value={parseInt(review.communication)} className={`${isMobile ? "rating-m":"rating-d"}`} name="communication" onChange={handleChange}></Rating>
-                <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Limpieza</Typography>
-                <Rating min={1} value={parseInt(review.cleanliness)} className={`${isMobile ? "rating-m":"rating-d"}`} name="cleanliness" onChange={handleChange}></Rating>
-                <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Precio</Typography>
-                <Rating min={1} value={parseInt(review.price)} className={`${isMobile ? "rating-m":"rating-d"}`} name="price" onChange={handleChange}></Rating>
-                <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Confort</Typography>
-                <Rating min={1} value={parseInt(review.comfort)} className={`${isMobile ? "rating-m":"rating-d"}`} name="comfort" onChange={handleChange}></Rating>
-                <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Valor</Typography>
-                <Rating min={1} value={parseInt(review.value)} className={`${isMobile ? "rating-m":"rating-d"}`} name="value" onChange={handleChange}></Rating>
-                <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Ubicacion</Typography>
-                <Rating min={1} value={parseInt(review.location)} className={`${isMobile ? "rating-m":"rating-d"}`} name="location" onChange={handleChange}></Rating>
-                <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Satisfaccion</Typography>
-                <Rating min={1} value={parseInt(review.satisfaction)} className={`${isMobile ? "rating-m":""}`} name="satisfaction" onChange={handleChange}></Rating>
+            <Box xs={12}>
+                <StyledEngineProvider injectFirst>
+                    <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Calidad</Typography>
+                    <Rating min={1} value={parseInt(review.quality)} className={`${isMobile ? "rating-v":"rating-d"}`} name="quality" onChange={handleChange}></Rating>
+                    <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Servicio</Typography>
+                    <Rating min={1} value={parseInt(review.service)} className={`${isMobile ? "rating-v":"rating-d"}`} name="service" onChange={handleChange}></Rating>
+                    <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Comunicacion</Typography>
+                    <Rating min={1} value={parseInt(review.communication)} className={`${isMobile ? "rating-v":"rating-d"}`} name="communication" onChange={handleChange}></Rating>
+                    <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Limpieza</Typography>
+                    <Rating min={1} value={parseInt(review.cleanliness)} className={`${isMobile ? "rating-v":"rating-d"}`} name="cleanliness" onChange={handleChange}></Rating>
+                    <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Precio</Typography>
+                    <Rating min={1} value={parseInt(review.price)} className={`${isMobile ? "rating-v":"rating-d"}`} name="price" onChange={handleChange}></Rating>
+                    <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Confort</Typography>
+                    <Rating min={1} value={parseInt(review.comfort)} className={`${isMobile ? "rating-v":"rating-d"}`} name="comfort" onChange={handleChange}></Rating>
+                    <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Valor</Typography>
+                    <Rating min={1} value={parseInt(review.value)} className={`${isMobile ? "rating-v":"rating-d"}`} name="value" onChange={handleChange}></Rating>
+                    <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Ubicacion</Typography>
+                    <Rating min={1} value={parseInt(review.location)} className={`${isMobile ? "rating-v":"rating-d"}`} name="location" onChange={handleChange}></Rating>
+                    <Typography className={`${isMobile ? "rating-m":"rating-d"}`}>Satisfaccion</Typography>
+                    <Rating min={1} value={parseInt(review.satisfaction)} className={`${isMobile ? "rating-v":"rating-de"}`} name="satisfaction" onChange={handleChange}></Rating>
+                </StyledEngineProvider>
             </Box>
             <Paper variant='outlined'/> 
+        </Grid>
+        {//* nombre de usuario
+        }
+        <Grid item xs={12} paddingBottom={3}>
+            <Typography variant='h6' className='titulo3'>Nombre</Typography>
+            <Paper variant='outlined' className='separador'/> 
+            <TextField 
+                className='text-field'
+                multiline
+                value={review.username}
+                name="username"
+                onChange={handleChange}
+            />
         </Grid>
         {//* comentario
         }

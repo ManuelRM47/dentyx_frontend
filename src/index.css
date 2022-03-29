@@ -19,13 +19,33 @@ h4 h5 {
   width: 100%;
 }
 
+.box{
+  display: block;
+  margin-left:auto;
+  margin-right: auto;
+}
+
+.font-m {
+  font-size: 2rem;
+}
+
 .rating-d {
-  width: 25%;
+  margin-left: 5%;
+  width: 20%;
   float: left;
+}
+
+.rating-de {
+  margin-left: 5%;
+  width: 20%;
 }
 
 .rating-m {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin-top: 10px;
 }
 
 .separador{
@@ -33,8 +53,11 @@ h4 h5 {
 }
 
 .rating-v {
-  display: table;
-  margin: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
 }
 
 .text-field {
