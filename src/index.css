@@ -30,14 +30,30 @@ h4 h5 {
 }
 
 .rating-d {
-  margin-left: 5%;
+  margin-top: 5px;
+  width: 30%;
+  font-size: 1rem;
+  float: left;
+}
+
+.rating-vd {
   width: 20%;
+  font-size: 2rem;
+  float: left;
+}
+
+.rating-wd {
+  width: 20%;
+  font-size: 1rem;
   float: left;
 }
 
 .rating-de {
-  margin-left: 5%;
-  width: 20%;
+  margin-top: 5px;
+  margin-left: 0;
+  width: 50%;
+  font-size: 1rem;
+  float: left;
 }
 
 .rating-m {
@@ -73,6 +89,7 @@ h4 h5 {
 }
 
 .titulo3{
+  width: 100%;
   color: #6934FF;
 }
 
