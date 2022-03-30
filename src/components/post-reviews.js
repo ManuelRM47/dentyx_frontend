@@ -168,7 +168,7 @@ export default function ReviewPost(props) {
                     highlightSelectedOnly
                     onChange={handleChange}
                 ></Rating>
-                <Box className='rating-de' sx={{ml: 2}}> {labels[parseInt(review.waiting_time)]}</Box>
+                <Box className={`${isMobile ? "rating-m":"rating-de"}`} sx={{ml: 2}}> {labels[parseInt(review.waiting_time)]}</Box>
             </StyledEngineProvider>
             <Paper variant='outlined' className='separador'/> 
         </Grid>
